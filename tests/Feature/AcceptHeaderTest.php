@@ -18,7 +18,7 @@ class AcceptHeaderTest extends TestCase
         $this->assertEquals($expected, app()->getLocale());
     }
 
-    public function localeDataProvider()
+    public static function localeDataProvider()
     {
         return [
             'en' => [
