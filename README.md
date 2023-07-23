@@ -25,3 +25,11 @@
 - Extends the user model with frequently used fields 
   - Tracks last login and number of logins 
 - Uses accept-language header to set the app locale
+
+## Installation
+
+Use composer to create a new project:
+
+```shell
+composer create-project coderscantina/laravel my-project
+```
