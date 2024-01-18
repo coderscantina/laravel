@@ -7,12 +7,18 @@ use App\Models\User;
 
 class ChangePassword
 {
-    public function execute(User $user, $password): bool
+    public function execute(User $user, string $password, ?bool $silent = false): bool
     {
         $user->password = $password;
         $user->save();
 
-        event(new PasswordChanged($user));
+        if (!$silent) {
+            event(new PasswordChanged($user, [
+                'date' => now()->isoFormat('LLLL'),
+                'browser' => request()->header('User-Agent'),
+                'ip' => request()->ip(),
+            ]));
+        }
 
         return true;
     }

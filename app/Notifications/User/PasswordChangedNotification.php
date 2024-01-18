@@ -7,6 +7,10 @@ use Illuminate\Notifications\Notification;
 
 class PasswordChangedNotification extends Notification
 {
+    public function __construct(public array $data)
+    {
+    }
+
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
