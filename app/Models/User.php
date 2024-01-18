@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\User\UserSettings;
 use App\Notifications\User\ResetPasswordNotification;
 use CodersCantina\Filter\Filterable;
 use CodersCantina\Hashids\Hashidable;
@@ -27,7 +28,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string|null $remember_token
  * @property string $source
  * @property string $language_iso
- * @property array|null $settings
+ * @property UserSettings|null $settings
  * @property int $login_count
  * @property \Illuminate\Support\Carbon|null $last_login_at
  * @property int $is_root
@@ -79,7 +80,8 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
         'password',
     ];
@@ -101,9 +103,10 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_root' => 'boolean',
         'last_login_at' => 'datetime',
         'password' => 'hashed',
-        'settings' => 'array',
+        'settings' => UserSettings::class,
     ];
 
     public function getJWTIdentifier(): string
@@ -118,7 +121,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function preferredLocale(): ?string
     {
-        return $this->language_iso ?? config('app.fallback_locale');
+        return $this->settings->languageIso ?? config('app.fallback_locale');
     }
 
     protected function initials(): Attribute

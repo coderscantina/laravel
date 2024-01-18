@@ -25,7 +25,7 @@ class OwnUserResource extends JsonResource
             'loginCount' => $this->login_count ?? 0,
             'lastLoginAt' => $this->when($this->last_login_at, fn() => $this->last_login_at->toIso8601String()),
             'languageIso' => $this->preferredLocale(),
-            'settings' => $this->settings,
+            'settings' => $this->settings->toArray(),
         ];
     }
 }
