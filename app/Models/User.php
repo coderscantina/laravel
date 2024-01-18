@@ -4,11 +4,13 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\User\UserSettings;
+use App\Models\User\UserSocialLink;
 use App\Notifications\User\ResetPasswordNotification;
 use CodersCantina\Filter\Filterable;
 use CodersCantina\Hashids\Hashidable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -135,6 +137,10 @@ class User extends Authenticatable implements JWTSubject
         return Attribute::get(fn() => $this->firstname . ' ' . $this->lastname);
     }
 
+    public function socialLinks(): HasMany
+    {
+        return $this->hasMany(UserSocialLink::class, 'user_id', 'id');
+    }
 
     protected function name(): Attribute
     {

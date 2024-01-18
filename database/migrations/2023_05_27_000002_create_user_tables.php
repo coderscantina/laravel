@@ -39,10 +39,23 @@ return new class extends Migration
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
+
+        Schema::create('user_social_links', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('external_id');
+            $table->string('service')->charset('ascii')->collation('ascii_bin');
+            $table->string('token')->nullable();
+
+            $table->foreignId('user_id');
+
+            $table->timestamps();
+        });
     }
 
     public function down(): void
     {
+        Schema::dropIfExists('user_social_links');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');
     }
