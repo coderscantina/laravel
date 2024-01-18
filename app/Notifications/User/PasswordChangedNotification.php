@@ -4,6 +4,7 @@ namespace App\Notifications\User;
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 
 class PasswordChangedNotification extends Notification
 {
@@ -15,8 +16,8 @@ class PasswordChangedNotification extends Notification
     {
         return (new MailMessage)
             ->subject(__('notifications.passwordChanged.subject'))
-            ->line(__('notifications.passwordChanged.intro'))
-            ->line(__('notifications.passwordChanged.note'));
+            ->line(new HtmlString(__('notifications.passwordChanged.intro', $this->data)))
+            ->line(new HtmlString(__('notifications.passwordChanged.note', ['resetUrl' => route('password.request')])));
     }
 
     public function via(): array

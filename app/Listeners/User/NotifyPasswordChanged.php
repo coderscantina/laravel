@@ -11,6 +11,6 @@ class NotifyPasswordChanged implements ShouldQueue
     public function handle(PasswordChanged $event): void
     {
         $event->user
-            ->notify(new PasswordChangedNotification());
+            ->notify(new PasswordChangedNotification($event->data));
     }
 }
