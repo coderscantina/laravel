@@ -35,6 +35,17 @@ class RouteServiceProvider extends ServiceProvider
             ];
         });
 
+        RateLimiter::for('one-time', function (Request $request) {
+            return [
+                Limit::perMinute(5)->by("one-time|{$request->ip()}"),
+                Limit::perMinute(1)->by("one-time|{$request->input('email')}"),
+            ];
+        });
+
+        RateLimiter::for('crucial', function (Request $request) {
+            return Limit::perMinute(5)->by($request->user()?->id ?: $request->ip());
+        });
+
         $this->routes(function () {
             Route::prefix('auth/v1')
                 ->middleware('api')
