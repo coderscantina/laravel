@@ -7,6 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
+        Schema::create('features', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('scope');
+            $table->text('value');
+            $table->timestamps();
+
+            $table->unique(['name', 'scope']);
+        });
+
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('queue')->index();
@@ -46,5 +56,6 @@ return new class extends Migration {
         Schema::dropIfExists('job_batches');
         Schema::dropIfExists('failed_jobs');
         Schema::dropIfExists('jobs');
+        Schema::dropIfExists('features');
     }
 };
