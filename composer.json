@@ -13,6 +13,7 @@
         "coderscantina/laravel-translations": "^1.0",
         "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^10.48",
+        "laravel/octane": "^2.5",
         "laravel/pennant": "^1.12",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.10",
