@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            $table->string('source')->charset('ascii')->collation('ascii_bin')->default('website');
-            $table->string('language_iso', 5)->charset('ascii')->collation('ascii_bin')->default('en');
+            $table->string('source')->charset('ascii')->default('website');
+            $table->string('language_iso', 5)->charset('ascii')->default('en');
             $table->json('settings')->nullable();
 
             $table->unsignedBigInteger('login_count')->default(0);
@@ -44,7 +44,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('external_id');
-            $table->string('service')->charset('ascii')->collation('ascii_bin');
+            $table->string('service')->charset('ascii');
             $table->string('token')->nullable();
 
             $table->foreignId('user_id');

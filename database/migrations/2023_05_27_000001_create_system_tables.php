@@ -9,7 +9,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->char('iso2', 2)->charset('ascii')->collation('ascii_bin')->primary();
+            $table->char('iso2', 2)->charset('ascii')->primary();
 
             $table->string('name_local')->nullable();
             $table->json('name_translation')->nullable();
@@ -21,8 +21,8 @@ return new class extends Migration {
         });
 
         Schema::create('languages', function (Blueprint $table) {
-            $table->string('iso', 5)->charset('ascii')->collation('ascii_bin')->primary();
-            $table->string('locale', 15)->charset('ascii')->collation('ascii_bin')->nullable();
+            $table->string('iso', 5)->charset('ascii')->primary();
+            $table->string('locale', 15)->charset('ascii')->nullable();
 
             $table->string('name');
             $table->string('name_local');
