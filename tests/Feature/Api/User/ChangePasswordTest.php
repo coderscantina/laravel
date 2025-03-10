@@ -18,9 +18,9 @@ class ChangePasswordTest extends TestCase
         Event::fake();
         $this->createAndActAs();
         $this->postJson(route('api.users.me.password'), [
-            'oldPassword' => 'password',
+            'old_password' => 'password',
             'password' => 'new-password',
-            'passwordConfirmation' => 'new-password',
+            'password_confirmation' => 'new-password',
         ])
             ->assertNoContent();
 
@@ -35,9 +35,9 @@ class ChangePasswordTest extends TestCase
     {
         $this->createAndActAs();
         $this->postJson(route('api.users.me.password'), [
-            'oldPassword' => 'wrong-password',
+            'old_password' => 'wrong-password',
             'password' => 'new-password',
-            'passwordConfirmation' => 'new-password',
+            'password_confirmation' => 'new-password',
         ])
             ->assertForbidden();
     }

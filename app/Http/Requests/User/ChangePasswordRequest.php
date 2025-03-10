@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\User;
 
-use CodersCantina\Request\ApiRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class ChangePasswordRequest extends ApiRequest
+class ChangePasswordRequest extends FormRequest
 {
     public function rules(): array
     {
