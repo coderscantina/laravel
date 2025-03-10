@@ -1,5 +1,12 @@
 # Release Notes
 
+## [1.3.0] - 2025-03-10
+
+- Laravel 11.0 compatibility
+- Updated packages
+- Added laravel related migrations
+- Fix storage directory structure
+
 ## [1.2.0] - 2024-10-26
 
 ### 🚀 Infrastructure Updates
