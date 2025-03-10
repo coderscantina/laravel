@@ -1,8 +1,8 @@
 # Release Notes
 
-## [1.3.0] - 2025-03-10
+## [1.3.1] - 2025-03-10
 
-- Laravel 11.0 compatibility
+- Laravel 12.0 compatibility
 - Updated packages
 - Added laravel related migrations
 - Fix storage directory structure
